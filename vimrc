@@ -20,14 +20,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
+
 NeoBundle 'Shougo/vimproc.vim', {
-  \ 'build' : {
+  \   'build' : {
   \     'windows' : 'tools\\update-dll-mingw',
   \     'cygwin' : 'make -f make_cygwin.mak',
   \     'mac' : 'make -f make_mac.mak',
   \     'linux' : 'make',
   \     'unix' : 'gmake',
-  \    },
+  \   }
   \ }
 
 NeoBundle 'Shougo/unite.vim'
@@ -59,9 +60,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'LeafCage/yankround.vim'
 NeoBundle 'tomtom/tcomment_vim'
-NeoBundleLazy 'jiangmiao/auto-pairs', {
-  \ 'autoload' : { 'insert' : 1,}
-  \ }
+NeoBundle 'jiangmiao/auto-pairs'
 NeoBundleLazy 'junegunn/vim-easy-align', {
   \ 'autoload': {
   \   'commands' : ['EasyAlign'],
@@ -201,3 +200,41 @@ if has("autocmd")
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
   augroup END
 endif
+
+"----------------------------------------------------
+" Unite
+"----------------------------------------------------
+let g:unite_enable_start_insert=1
+nmap <silent> <C-u><C-b> :<C-u>Unite buffer<CR>
+nmap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file_rec/async<CR>
+nmap <silent> <C-u><C-r> :<C-u>Unite file_mru<CR>
+
+"----------------------------------------------------
+" VimFiler
+"----------------------------------------------------
+let g:vimfiler_as_default_explorer = 1
+nnoremap <silent><C-u><C-j> :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit -toggle<CR>
+
+"----------------------------------------------------
+" yankround
+"----------------------------------------------------
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+nnoremap <silent> <C-u><C-p> :<C-u>Unite yankround<CR>
+
+"----------------------------------------------------
+" neocomplete
+"----------------------------------------------------
+let g:neocomplete#enable_at_startup               = 1
+let g:neocomplete#auto_completion_start_length    = 3
+let g:neocomplete#enable_ignore_case              = 1
+let g:neocomplete#enable_smart_case               = 1
+let g:neocomplete#enable_camel_case               = 1
+let g:neocomplete#use_vimproc                     = 1
+let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
