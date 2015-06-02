@@ -1,0 +1,7 @@
+#!/bin/bash
+CURRENT=$(cd $(dirname $0) && pwd)
+DOT_FILES=( zshrc vimrc )
+for file in "${DOT_FILES[@]}"
+do
+    ln -si "$CURRENT"/"$file" "$HOME"/."$file"
+done
