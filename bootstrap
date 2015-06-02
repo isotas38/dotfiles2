@@ -1,5 +1,8 @@
 #!/bin/bash
 CURRENT=$(cd $(dirname $0) && pwd)
+cd $CURRENT
+git submodule init
+git submodule update
 DOT_FILES=( zshrc vimrc )
 for file in "${DOT_FILES[@]}"
 do
