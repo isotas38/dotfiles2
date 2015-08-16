@@ -23,7 +23,38 @@ autoload -Uz compinit
 compinit
 
 # プロンプト
-PROMPT=${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}%~%f" %B%F{red}❯%F{yellow}❯%F{green}❯%f%b "
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "!"
+zstyle ':vcs_info:git:*' unstagedstr "+"
+zstyle ':vcs_info:*' formats "%c%u[%s:%b]"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+
+parse_git_dirty() {
+	local STATUS=''
+	STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
+	if [[ -n $STATUS ]]; then
+    echo "*"
+	else
+		echo ""
+  fi
+}
+
+prompt_git() {
+	vcs_info
+	# if [[ -n $(parse_git_dirty) ]];then
+	if [ -n "$(parse_git_dirty)" ];then
+		echo -n "%F{yellow}${vcs_info_msg_0_}%f"
+	else
+		echo -n "%F{green}${vcs_info_msg_0_}%f"
+	fi
+}
+
+build_prompt() {
+	prompt_git
+}
+PROMPT=${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}%~%f' $(build_prompt)'" %B%F{red}❯%F{yellow}❯%F{green}❯%f%b "
 
 #
 # Options
