@@ -69,7 +69,7 @@ NeoBundleLazy 'junegunn/vim-easy-align', {
 
 if has('lua')
   NeoBundleLazy 'Shougo/neocomplete.vim', {
-    \ 'depends' : 'Shougo/vimproc',
+    \ 'depends' : 'Shougo/vimproc.vim',
     \ 'autoload' : { 'insert' : 1,}
     \ }
 endif
@@ -87,6 +87,14 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
 
 NeoBundle 'altercation/vim-colors-solarized'
+
+NeoBundleLazy 'pangloss/vim-javascript', {
+  \   'filetypes' : ['javascript'],
+  \ }
+
+NeoBundleLazy 'fatih/vim-go', {
+  \   'filetypes' : ['go'],
+  \ }
 
 call neobundle#end()
 
@@ -127,6 +135,7 @@ set laststatus=2
 syntax enable
 set t_Co=256
 set background=dark
+let g:solarized_termtrans=1
 colorscheme solarized
 
 if (exists('+colorcolumn'))
@@ -238,3 +247,10 @@ let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+"----------------------------------------------------
+" airline
+"----------------------------------------------------
+let g:airline_powerline_fonts=1
+let g:airline_theme='luna'
+let g:airline_extensions = ['branch', 'tabline']
