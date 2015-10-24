@@ -349,6 +349,22 @@ autoload -Uz peco-select-history
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+<<<<<<< HEAD
+=======
+case "${OSTYPE}" in
+# MacOSX
+darwin*)
+    # ここに設定
+    [ -f ~/dotfiles2/zsh/config/zshrc.osx ] && source ~/dotfiles2/zsh/config/zshrc.osx
+    ;;
+# Linux
+linux*)
+    # ここに設定
+    [ -f ~/dotfiles2/zsh/config/zshrc.linux ] && source ~/dotfiles2/zsh/config/zshrc.linux
+    ;;
+esac
+
+>>>>>>> refs/remotes/origin/master
 ## load user .zshrc configuration file
 #
 [ -f ${HOME}/.zshrc.mine ] && source ${HOME}/.zshrc.mine
