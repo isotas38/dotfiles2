@@ -349,8 +349,6 @@ autoload -Uz peco-select-history
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-<<<<<<< HEAD
-=======
 case "${OSTYPE}" in
 # MacOSX
 darwin*)
@@ -364,7 +362,6 @@ linux*)
     ;;
 esac
 
->>>>>>> refs/remotes/origin/master
 ## load user .zshrc configuration file
 #
 [ -f ${HOME}/.zshrc.mine ] && source ${HOME}/.zshrc.mine
