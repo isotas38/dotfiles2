@@ -14,9 +14,9 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-fpath=(${HOME}/dotfiles/zsh/functions(N-/) ${fpath})
+fpath=(${HOME}/dotfiles2/zsh/functions(N-/) ${fpath})
 # zsh-completions
-fpath=($HOME/dotfiles/zsh/zsh-completions/src $fpath)
+fpath=($HOME/dotfiles2/zsh/zsh-completions/src $fpath)
 
 # 補完機能を有効にする
 autoload -Uz compinit
@@ -348,3 +348,7 @@ bindkey '^@' peco-cdr
 autoload -Uz peco-select-history
 zle -N peco-select-history
 bindkey '^r' peco-select-history
+
+## load user .zshrc configuration file
+#
+[ -f ${HOME}/.zshrc.mine ] && source ${HOME}/.zshrc.mine
